@@ -2,7 +2,7 @@
 
 namespace App\Schema;
 
-class Todo{
+class Task{
     public \PDO $conn;
     public function __construct($db)
     {
@@ -51,5 +51,10 @@ class Todo{
                 "error_message"=>$e->getMessage()
             ]);
         }
+    }
+
+    public function rollback(){
+        $this->drop_table();
+        $this->create_table();
     }
 }

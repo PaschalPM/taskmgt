@@ -1,13 +1,17 @@
 <?php
     
     use App\Route;
-    use App\Controllers\ToDoController;
-
+    use App\Controllers\TaskController;
+    use App\Config\Database;
+    use App\Schema\Task as TaskSchema;
+    $taskSchema = new TaskSchema(new Database());
    
-   
-    Route::get("/api",[ToDoController::class,"index"]);
-    Route::get("/api/:id",[ToDoController::class,"show"]);
-    Route::post("/api",[ToDoController::class,"create"]);
-    Route::destroy("/api/:id",[ToDoController::class,"delete"]);
-    Route::update("/api/:id",[ToDoController::class,"edit"]);
-    Route::post("/api_truncate",[ToDoController::class,"truncate"]);
+    Route::get("/api",[TaskController::class,"index"]);
+    Route::get("/api/:id",[TaskController::class,"show"]);
+    Route::post("/api",[TaskController::class,"create"]);
+    Route::destroy("/api/:id",[TaskController::class,"delete"]);
+    Route::update("/api/:id",[TaskController::class,"edit"]);
+    Route::post("/api_truncate",[TaskController::class,"truncate"]);
+    Route::post("/api_rollback",function() use ($taskSchema){
+        $taskSchema->rollback();
+    });

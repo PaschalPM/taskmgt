@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Models;
-use \App\Schema\Todo as TodoSchema;
+use \App\Schema\Task as TaskSchema;
 
-class Todo{
+class Task{
     public Int $id;
     public String $task;
     public String $day_n_time;
@@ -14,7 +14,7 @@ class Todo{
         $parts = explode("\\",__CLASS__);
         $this->table_name = strtolower(end($parts))."s";
         $this->conn = $db->connect();
-        $this->todoSchema = new TodoSchema($db);
+        $this->taskSchema = new TaskSchema($db);
     }
     public function truncate()
     {
