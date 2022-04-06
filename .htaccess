@@ -1,0 +1,11 @@
+Options -Multiviews
+Options -Indexes
+
+DirectoryIndex server.php
+
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+RewriteRule (.*) server.php?url=$1
