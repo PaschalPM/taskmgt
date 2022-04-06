@@ -28,9 +28,7 @@ class Task{
             return true;
         }
         catch(\PDOException $e){
-            print_r(json_encode([
-                "error_message"=>$e->getMessage()
-            ]));
+            json(["error_message"=>$e->getMessage()]);
         }
     }
     public function create($args)
@@ -46,9 +44,7 @@ class Task{
             
         }
         catch(\PDOException $e){
-            print_r(json_encode([
-                "error_message"=>$e->getMessage()
-            ]));
+            json(["error_message"=>$e->getMessage()]);
         }
     }
 
@@ -62,9 +58,8 @@ class Task{
             
         }
         catch(\PDOException $e){
-            print_r(json_encode([
-                "error_message"=>$e->getMessage()
-            ]));
+            json(["error_message"=>$e->getMessage()]);
+
         }
     }
     public function read($id)
@@ -76,9 +71,7 @@ class Task{
             return $res->fetch();            
         }
         catch(\PDOException $e){
-            print_r(json_encode([
-                "error_message"=>$e->getMessage()
-            ]));
+            json(["error_message"=>$e->getMessage()]);
         }
     }
     public function update($id)
@@ -92,9 +85,7 @@ class Task{
             
         }
         catch(\PDOException $e){
-            print_r(json_encode([
-                "error_message"=>$e->getMessage()
-            ]));
+            json(["error_message"=>$e->getMessage()]);
         }
     }
     public function delete($id)
@@ -103,11 +94,7 @@ class Task{
 
         try{
             $this->conn->query($sql);
-
-            print_r(json_encode([
-                "success_message"=>"record deleted"
-            ]));
-            
+            return true;            
         }
         catch(\PDOException $e){
             print_r(json_encode([

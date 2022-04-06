@@ -6,19 +6,12 @@ use App\Models\Task;
 
 class TaskController{
     static public function index(){
-        setHeader([
-            "Content-Type"=>"application/json"
-        ]);
         $db = new DB();
         $taskModel = new Task($db);
 
         json($taskModel->read_all());
     }
     static public function create(){
-        setHeader([
-            "Content-Type"=>"application/json"
-        ]);
-
         $db = new DB();
         $taskModel = new Task($db);
 
@@ -32,18 +25,13 @@ class TaskController{
         };
     }
     static public function show($id){
-        setHeader([
-            "Content-Type"=>"application/json"
-        ]);
-
+        
         $db = new DB();
         $taskModel = new Task($db);
         json($taskModel->read($id));
     }
     static public function delete($id){
-        setHeader([
-            "Content-Type"=>"application/json"
-        ]);
+
         $db = new DB();
         $taskModel = new Task($db);
         if($taskModel->delete($id))
@@ -52,9 +40,7 @@ class TaskController{
         }
     }
     static public function edit($id){
-        setHeader([
-            "Content-Type"=>"application/json"
-        ]);
+
         $db = new DB();
         $taskModel = new Task($db);
         $taskModel->task = request()->task;      
@@ -67,16 +53,12 @@ class TaskController{
     }
 
     static public function truncate(){
-        setHeader([
-            "Content-Type"=>"application/json"
-        ]);
-
+    
         $db = new DB();
         $taskModel = new Task($db);
         if($taskModel->truncate())
         {
             json(["success message"=>"tasks table truncated"]);
         }
-
     }
 }

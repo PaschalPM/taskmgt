@@ -45,12 +45,16 @@
     }
 
     /**
-     * It converts an array in json and prints same
+     * It sets the response header to json then converts an array in json and prints same
      *
      * @param [Array] $arr
      * @return void
      */
     function json($arr)
     {
+        setHeader([
+            "Content-Type"=>"application/json"
+        ]);
+
         print_r(json_encode($arr));
     }
